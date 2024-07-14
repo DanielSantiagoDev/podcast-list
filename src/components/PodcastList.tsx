@@ -1,11 +1,11 @@
 // src/components/PodcastList.tsx
 import React from 'react';
-import { usePodcasts } from '../hooks/usePodcasts';
+import { usePodcast } from '../context/AppContext';
 import { Podcast } from '../types/types';
 import { Link } from 'react-router-dom';
 
 export const PodcastList: React.FC = () => {
-  const { podcasts, loading, error } = usePodcasts();
+  const { podcasts, loading, error  } = usePodcast();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading podcasts</div>;

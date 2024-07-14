@@ -2,11 +2,14 @@
 import React from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
 import { PodcastTracks } from '../types/types';
-import { usePodcastDetails } from '../hooks/usePodcastDetails';
+import { usePodcast } from '../context/AppContext';
 
 const PodcastDetails: React.FC = () => {
   const { podcastId } = useParams<{ podcastId: string }>();
-  const { podcastDetails, loading, error } = usePodcastDetails(podcastId!);
+  const { podcasts, selectedPodcastTracks, setSelectedPodcast, loading, error } = usePodcast();
+  React.useEffect(() => {
+    setSelectedPodcast(podcasts.find(p => p.id.attributes['im:id'] === podcastId) || null);
+  }, [podcastId, podcasts]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading podcast tracks</div>;
@@ -15,16 +18,14 @@ const PodcastDetails: React.FC = () => {
     <div>
       <h1>Episodes</h1>
       <ul>
-        {podcastDetails.map((track: PodcastTracks) => (
+        {selectedPodcastTracks.map((track: PodcastTracks) => (
           <li key={track.trackId}>
             <h3>{track.trackName}</h3>
-            <Link to={`/podcast/${podcastId}/episode/${track.trackId}`}>
-              {track.trackName}
-            </Link>
+            <Link to={`/podcast/${podcastId}/episode/${track.trackId}`}>{track.trackName}</Link>
           </li>
         ))}
       </ul>
-      <Outlet />
+      <Outlet /> 
     </div>
   );
 };
