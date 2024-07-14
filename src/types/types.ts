@@ -1,5 +1,5 @@
 // src/types/types.ts
-// Define un tipo para las imágenes con altura como atributo
+
 interface Image {
   label: string;
   attributes: {
@@ -7,7 +7,6 @@ interface Image {
   };
 }
 
-// Define un tipo para los precios con cantidad y moneda como atributos
 interface Price {
   label: string;
   attributes: {
@@ -16,7 +15,6 @@ interface Price {
   };
 }
 
-// Define un tipo para el contenido con término y etiqueta como atributos
 interface ContentType {
   attributes: {
     term: string;
@@ -24,7 +22,6 @@ interface ContentType {
   };
 }
 
-// Define un tipo para los enlaces con relación, tipo y href como atributos
 interface Link {
   attributes: {
     rel: string;
@@ -33,7 +30,6 @@ interface Link {
   };
 }
 
-// Define un tipo para el ID con etiqueta y un atributo adicional
 interface ID {
   label: string;
   attributes: {
@@ -41,7 +37,6 @@ interface ID {
   };
 }
 
-// Define un tipo para el artista con href como atributo
 interface Artist {
   label: string;
   attributes: {
@@ -49,7 +44,6 @@ interface Artist {
   };
 }
 
-// Define un tipo para la categoría con múltiples atributos
 interface Category {
   attributes: {
     'im:id': string;
@@ -59,7 +53,6 @@ interface Category {
   };
 }
 
-// Define un tipo para la fecha de lanzamiento con etiqueta como atributo
 interface ReleaseDate {
   label: string;
   attributes: {
@@ -67,7 +60,6 @@ interface ReleaseDate {
   };
 }
 
-// Define el tipo principal para Podcast
 export interface Podcast {
   'im:name': { label: string };
   'im:image': Image[];
@@ -81,4 +73,37 @@ export interface Podcast {
   'im:artist': Artist;
   category: Category;
   'im:releaseDate': ReleaseDate;
+}
+
+export interface PodcastTracks {
+  wrapperType: string;
+  kind: string;
+  collectionId: number;
+  trackId: number;
+  artistName: string;
+  collectionName: string;
+  trackName: string;
+  collectionCensoredName: string;
+  trackCensoredName: string;
+  collectionViewUrl: string;
+  feedUrl: string;
+  trackViewUrl: string;
+  artworkUrl30: string;
+  artworkUrl60: string;
+  artworkUrl100: string;
+  artworkUrl600: string;
+  collectionPrice: number;
+  trackPrice: number;
+  collectionHdPrice: number;
+  releaseDate: string;
+  collectionExplicitness: string;
+  trackExplicitness: string;
+  trackCount: number;
+  trackTimeMillis: number;
+  country: string;
+  currency: string;
+  primaryGenreName: string;
+  contentAdvisoryRating: string;
+  genreIds: string[];
+  genres: string[];
 }

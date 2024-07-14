@@ -7,7 +7,8 @@ module.exports = (env) => {
     entry: './src/index.tsx',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
+      publicPath: '/'
     },
     module: {
       rules: [
@@ -31,6 +32,7 @@ module.exports = (env) => {
       })
     ],
     devServer: {
+      historyApiFallback: true,
       static: {
         directory: path.join(__dirname, 'dist'),
       },

@@ -2,8 +2,9 @@
 import React from 'react';
 import { usePodcasts } from '../hooks/usePodcasts';
 import { Podcast } from '../types/types';
+import { Link } from 'react-router-dom';
 
-export const PodcastList = () => {
+export const PodcastList: React.FC = () => {
   const { podcasts, loading, error } = usePodcasts();
 
   if (loading) return <div>Loading...</div>;
@@ -14,8 +15,10 @@ export const PodcastList = () => {
       <h1>Podcast List</h1>
       <ul>
         {podcasts.map((podcast: Podcast) => (
-          <li key={podcast.id.label}>
-            <h3>{podcast['im:name'].label}</h3>
+          <li key={podcast.id.attributes['im:id']}>
+            <Link to={`/podcast/${podcast.id.attributes['im:id']}`}>
+              <h3>{podcast['im:name'].label}</h3>
+            </Link>
           </li>
         ))}
       </ul>

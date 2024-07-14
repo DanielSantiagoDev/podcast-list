@@ -10,8 +10,6 @@ const Header: React.FC = () => {
     const handleStartLoading = () => setIsLoading(true);
     const handleStopLoading = () => setIsLoading(false);
 
-
-
     return () => {
       handleStopLoading();
     };
@@ -20,7 +18,6 @@ const Header: React.FC = () => {
   return (
     <header>
       <div
-
         style={{
           background: isLoading ? 'orange' : 'grey',
           borderRadius: '50%',
